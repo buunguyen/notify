@@ -180,7 +180,7 @@
             var propValue = property.GetValue(obj, null);
             if (IsValidObjectType(propValue))
             {
-                ClearReachableTrackedObjectIfExists(property.Name);
+                ClearAssociatedPropertyOrElement(property.Name);
                 var trackedObject = new TrackedObject(propValue);
                 _associatedPropertiesOrElements.Add(property.Name, trackedObject);
                 trackedObject.Changed += OnChange;
@@ -211,7 +211,7 @@
             {
                 if (args.OldItems != null)
                     foreach (var oldItem in args.OldItems)
-                        ClearReachableTrackedObjectIfExists(oldItem);
+                        ClearAssociatedPropertyOrElement(oldItem);
 
                 if (args.NewItems != null)
                     foreach (var newElement in args.NewItems)
@@ -224,7 +224,7 @@
         {
             if (IsValidObjectType(element))
             {
-                ClearReachableTrackedObjectIfExists(element);
+                ClearAssociatedPropertyOrElement(element);
                 var trackedObject = new TrackedObject(element);
                 _associatedPropertiesOrElements.Add(element, trackedObject);
                 trackedObject.Changed += OnChange;
@@ -234,16 +234,16 @@
         private void ClearAssociatedElements()
         {
             foreach (var key in _associatedPropertiesOrElements.Keys.ToArray())
-                ClearReachableTrackedObjectIfExists(key);
+                ClearAssociatedPropertyOrElement(key);
         }
         #endregion
 
-        private void ClearReachableTrackedObjectIfExists(object propertyNameOrCollectionElement)
+        private void ClearAssociatedPropertyOrElement(object propertyNameOrElement)
         {
-            if (_associatedPropertiesOrElements.ContainsKey(propertyNameOrCollectionElement))
+            if (_associatedPropertiesOrElements.ContainsKey(propertyNameOrElement))
             {
-                TrackedObject trackedObject = _associatedPropertiesOrElements[propertyNameOrCollectionElement];
-                _associatedPropertiesOrElements.Remove(propertyNameOrCollectionElement);
+                TrackedObject trackedObject = _associatedPropertiesOrElements[propertyNameOrElement];
+                _associatedPropertiesOrElements.Remove(propertyNameOrElement);
                 trackedObject.Dispose();
             }
         }
