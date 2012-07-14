@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionTrackedObject.cs" />
+    <Compile Include="NormalTrackedObject.cs" />
     <Compile Include="Tracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrackClassAttribute.cs" />

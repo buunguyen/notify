@@ -3,8 +3,8 @@
     using System;
 
     /// <summary>
-    /// This is an optional attribute.
-    /// It can be used in conjuntion or independent with <see cref="TrackClassAttribute"/>.
+    /// This is an optional attribute. Use it to force tracking or not tracking a property.
+    /// This attribute can be used independently of <see cref="TrackClassAttribute"/>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
     public class TrackMemberAttribute : Attribute

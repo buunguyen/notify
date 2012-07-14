@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
 
@@ -29,7 +28,7 @@
         /// These objects must not be <c>null</c> and must implements one of these 2 interfaces:
         /// <list type="bullet">
         ///     <item><description><see cref="INotifyPropertyChanged"/></description></item>
-        ///     <item><description><see cref="INotifyCollectionChanged"/></description></item>
+        ///     <item><description><see cref="CollectionTrackedObject"/></description></item>
         /// </list>
         /// </param>
         /// <returns>This tracker object.</returns>
@@ -38,7 +37,7 @@
             if (objects == null || objects.Length == 0)
                 throw new ArgumentException("No object to track");
 
-            var toBeTracked = objects.Select(o => new TrackedObject(o)).ToList();
+            var toBeTracked = objects.Select(TrackedObject.Create).ToList();
             toBeTracked.ForEach(o => {
                 o.Changed += _ => {
                     if (Changed != null) Changed(this);
