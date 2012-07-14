@@ -1,4 +1,4 @@
-INotify :: Object change tracking library for .NET applications.
+INotify :: Change tracking library for .NET
 =======
 When building WPF/WinForms applications, I often run into the need of tracking when there is a change in an object hierarchy.
 
