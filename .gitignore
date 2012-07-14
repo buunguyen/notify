@@ -4,3 +4,10 @@ obj
 
 # mstest test results
 TestResults
+
+# ReSharper
+_ReSharper.*
+
+# User Specific
+*.user
+*.suo
