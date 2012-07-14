@@ -1,4 +1,4 @@
-When building WPF and WinForms applications, I often run into the need to know when there is a change in an data-binding data source.
+When building WPF and WinForms applications, I often run into the need to know when there is a change in a data-binding data source.
 
 For example, imagine an application with a screen for users to edit some settings.
 By default, the Save button is disabled because no change was made yet. Whenever a user makes a change to the screen, data binding triggers a change to the underlying data source and the Save button should be enabled.
