@@ -17,8 +17,8 @@
     /// <item>    
     ///     <description>
     ///         Create a <see cref="TrackedObject"/> for every existing or newly added element in the collection
-    ///         and registers to its <see cref="Changed"/> event. Keep track of these elements in 
-    ///         <see cref="_registeredElements"/> so that they can be cleaned up in the next step.
+    ///         and handle its <see cref="Changed"/> event. Keep track of these elements in 
+    ///         <see cref="_registeredElements"/> so that they can be cleaned up later.
     ///     </description>
     /// </item>
     /// <item>    

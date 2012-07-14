@@ -1,33 +1,11 @@
 ﻿namespace INotify
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.ComponentModel;
 
     /// <summary>
-    /// Represents a tracked object and wraps the original object. 
-    /// Depending on the specific subclass, <see cref="TrackedObject"/> basically:
-    /// <list type="bullet">
-    /// <item>
-    ///     <description>
-    ///         Listens to change event of the wrapped <see cref="INotifyCollectionChanged"/> or <see cref="INotifyPropertyChanged"/>.
-    ///     </description>
-    /// </item>
-    /// <item>
-    ///     <description>
-    ///         Stores its elements and associated <see cref="TrackedObject"/> (for <see cref="INotifyCollectionChanged"/>)
-    ///         or its properties and associated <see cref="TrackedObject"/> (for <see cref="INotifyPropertyChanged"/>)
-    ///         in <see cref="AssociatedPropertiesOrElements"/>.
-    ///     </description>
-    /// </item>
-    /// <item>
-    ///     <description>
-    ///         Listens to change event of every <see cref="TrackedObject"/> stored in <see cref="AssociatedPropertiesOrElements"/>. 
-    ///         Effectively, this enables changes to bubble up to the root object.
-    ///     </description>
-    /// </item>
-    /// </list>
+    /// Represents a tracked object and wraps the original object.
     /// </summary>
     internal abstract class TrackedObject : IDisposable
     {

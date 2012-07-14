@@ -8,8 +8,8 @@
     /// <summary>
     /// Creates an instance of this class to track changes to as many objects as needed.
     /// It automatically drills down and track changes to all objects reachable from the 
-    /// explicitly tracked objects.
-    /// Typically in an MVVM application, it's convenient to track just the root view model.
+    /// explicitly tracked objects. In an MVVM application, it should be sufficient to track 
+    /// just the root view model.
     /// </summary>
     /// <remarks>
     /// This class is not thread-safe. If you want to access instances of this class

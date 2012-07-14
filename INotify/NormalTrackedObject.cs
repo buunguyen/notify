@@ -16,8 +16,8 @@
     /// <item>
     ///     <description>
     ///         Create a <see cref="TrackedObject"/> for each eligible property (see <see cref="IsEligibleProperty"/>)
-    ///         and handle <see cref="Changed"/> event. Keep track of these properties in 
-    ///         <see cref="_registeredProperties"/> so that they can be cleaned up in the next step.
+    ///         and handle its <see cref="Changed"/> event. Keep track of these properties in 
+    ///         <see cref="_registeredProperties"/> so that they can be cleaned up later.
     ///     </description>
     /// </item>
     /// <item>
