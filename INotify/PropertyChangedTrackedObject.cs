@@ -39,7 +39,7 @@
         {
         }
 
-        protected override void RegisterTrackedObject()
+        internal override void RegisterTrackedObject()
         {
             var attribute = GetClassAttribute(Tracked);
             var bindingFlags = GetBindingFlags(attribute);
@@ -52,7 +52,7 @@
             ((INotifyPropertyChanged)Tracked).PropertyChanged += OnPropertyChanged;
         }
 
-        protected override void UnregisterTrackedObject()
+        internal override void UnregisterTrackedObject()
         {
             foreach (var key in _registeredProperties.Keys.ToArray())
                 RemoveProperty(key);
@@ -106,6 +106,9 @@
 
         private void RegisterProperty(object obj, PropertyInfo property)
         {
+            // Not support indexer
+            if (property.GetIndexParameters().Length > 0) return;
+
             var propValue = property.GetValue(obj, null);
             if (IsValidObjectType(propValue))
             {

@@ -18,14 +18,24 @@
             Tracked = tracked;
         }
 
+        /// <summary>
+        /// Factory method to create a correct subclass of <see cref="TrackedObject"/>.
+        /// </summary>
+        /// <param name="obj">The object to be tracked.</param>
+        /// <returns>An instance of a subclass of <see cref="TrackedObject"/>.</returns>
         internal static TrackedObject Create(object obj)
         {
             if (!IsValidObjectType(obj))
                 throw new ArgumentException("null or invalid object type");
 
-            var trackedObject = obj is INotifyCollectionChanged
-                                    ? (TrackedObject)new CollectionChangedTrackObject(obj)
-                                    : new PropertyChangedTrackedObject(obj);
+            TrackedObject trackedObject;
+            if (obj is INotifyCollectionChanged && obj is INotifyPropertyChanged)
+                trackedObject = new DualTrackedObject(obj);
+            else if (obj is INotifyCollectionChanged)
+                trackedObject = new CollectionChangedTrackObject(obj);
+            else 
+                trackedObject = new PropertyChangedTrackedObject(obj);
+
             trackedObject.RegisterTrackedObject();
             return trackedObject;
         }
@@ -36,9 +46,9 @@
                    (obj is INotifyCollectionChanged && obj is IEnumerable);
         }
 
-        protected abstract void RegisterTrackedObject();
+        internal abstract void RegisterTrackedObject();
 
-        protected abstract void UnregisterTrackedObject();
+        internal abstract void UnregisterTrackedObject();
 
         protected void OnChange(Tracker tracker = null)
         {

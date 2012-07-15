@@ -32,22 +32,22 @@
     /// </summary>
     internal class CollectionChangedTrackObject : TrackedObject
     {
-        private readonly Dictionary<object, TrackedObject> _registeredElements =
-            new Dictionary<object, TrackedObject>(ObjectReferenceEqualityComparer<object>.Default);
+        private readonly Dictionary<object, TrackCount> _registeredElements =
+            new Dictionary<object, TrackCount>(ObjectReferenceEqualityComparer<object>.Default);
 
         internal CollectionChangedTrackObject(object tracked)
             : base(tracked)
         {
         }
 
-        protected override void RegisterTrackedObject()
+        internal override void RegisterTrackedObject()
         {
             foreach (var element in (IEnumerable)Tracked)
                 RegisterElement(element);
             ((INotifyCollectionChanged)Tracked).CollectionChanged += OnCollectionChanged;
         }
 
-        protected override void UnregisterTrackedObject()
+        internal override void UnregisterTrackedObject()
         {
             RemoveAllElements();
             ((INotifyCollectionChanged)Tracked).CollectionChanged -= OnCollectionChanged;
@@ -72,22 +72,28 @@
 
         private void RegisterElement(object element)
         {
-            if (IsValidObjectType(element))
+            if (!IsValidObjectType(element)) return;
+
+            var trackedObject = Create(element);
+            if (!_registeredElements.ContainsKey(element))
             {
-                RemoveElement(element);
-                var trackedObject = Create(element);
-                _registeredElements.Add(element, trackedObject);
+                _registeredElements.Add(element, new TrackCount(trackedObject, 0));
                 trackedObject.Changed += OnChange;
             }
+            _registeredElements[element].Count++;
         }
 
         private void RemoveElement(object element)
         {
             if (_registeredElements.ContainsKey(element))
             {
-                TrackedObject trackedObject = _registeredElements[element];
-                _registeredElements.Remove(element);
-                trackedObject.Dispose();
+                var trackCount = _registeredElements[element];
+                trackCount.Count--;
+                if (trackCount.Count == 0)
+                {
+                    _registeredElements.Remove(element);
+                    trackCount.TrackedObject.Dispose();
+                }
             }
         }
 
@@ -97,7 +103,19 @@
                 RemoveElement(key);
         }
 
-        public class ObjectReferenceEqualityComparer<T> : EqualityComparer<T> where T : class
+        private class TrackCount
+        {
+            public readonly TrackedObject TrackedObject;
+            public int Count;
+
+            public TrackCount(TrackedObject trackedObject, int count)
+            {
+                TrackedObject = trackedObject;
+                Count = count;
+            }
+        }
+
+        private class ObjectReferenceEqualityComparer<T> : EqualityComparer<T> where T : class
         {
             public static new readonly IEqualityComparer<T> Default =
                 new ObjectReferenceEqualityComparer<T>();

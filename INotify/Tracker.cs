@@ -27,7 +27,7 @@
         /// Can be invoked multiple times for different objects.
         /// </summary>
         /// <param name="objects">Objects to be tracked.
-        /// These objects must not be <c>null</c> and must implements one of these 2 interfaces:
+        /// These objects must not be <c>null</c> and must implements one or both of these interfaces:
         /// <list type="bullet">
         ///     <item><description><see cref="INotifyPropertyChanged"/></description></item>
         ///     <item><description><see cref="INotifyCollectionChanged"/> (and must also be an <see cref="IEnumerable"/>)</description></item>

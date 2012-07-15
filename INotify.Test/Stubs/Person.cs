@@ -1,21 +1,10 @@
 namespace INotify.Test.Stubs
 {
-    using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
 
-    [TrackClass] class Person : INotifyPropertyChanged
+    [TrackClass]
+    class Person : NotifyPropertyChangedObject
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-        }
-        #endregion
-
         private string _name = string.Empty;
         [TrackMember] public string Name
         {

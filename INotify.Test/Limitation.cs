@@ -1,9 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 namespace INotify.Test
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Stubs;
 
@@ -22,54 +19,20 @@ namespace INotify.Test
             Tracker.Track(p);
         }
 
-        private class Dummy : ObservableCollection<object>, INotifyPropertyChanged
-        {
-            #region INotifyPropertyChanged
-            public new event PropertyChangedEventHandler PropertyChanged;
-
-            private void NotifyPropertyChanged(String info)
-            {
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-            #endregion
-
-            private string _name;
-            public string Name
-            {
-                get { return _name; }
-                set
-                {
-                    if (_name != value)
-                    {
-                        _name = value;
-                        NotifyPropertyChanged("Name");
-                    }
-                }
-            }
-        }
-
         [TestMethod]
-        public void Should_handle_object_implements_both_interfaces()
+        public void Should_fire_for_indexer()
         {
-            var d = new Dummy();
-            Tracker.Track(d);
-            d.Name += "(changed)";
+            var dummy = new IndexerDummy();
+            Tracker.Track(dummy);
+            dummy[0] = "see my change?";
+            Tracker.Track(dummy);
             Assert.IsTrue(HasChange);
         }
 
         [TestMethod]
-        public void Should_handle_duplicate_collection_element()
+        public void Should_not_fire_if_class_is_excluded()
         {
-            var p1 = new Person();
-            var p2 = p1;
-            var ppl = new ObservableCollection<Person> {p1, p2};
-            Tracker.Track(ppl);
-            ppl.Remove(p1);
-            Assert.IsTrue(HasChange);
-
-            p2.Name += "(changed)";
-            Assert.IsTrue(HasChange);
+            // well, this attribute doesn't exist yet, this test case is to remind me!
         }
     }
 }

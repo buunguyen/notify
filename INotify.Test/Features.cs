@@ -3,7 +3,6 @@ namespace INotify.Test
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Stubs;
 
@@ -203,51 +202,10 @@ namespace INotify.Test
             Assert.IsTrue(HasChange);
         }
 
-        private class Dummy : INotifyPropertyChanged
-        {
-            #region INotifyPropertyChanged
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            private void NotifyPropertyChanged(String info)
-            {
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-            #endregion
-
-            private Person _p1;
-            public Person P1
-            {
-                get { return _p1; }
-                set
-                {
-                    if (_p1 != value)
-                    {
-                        _p1 = value;
-                        NotifyPropertyChanged("P1");
-                    }
-                }
-            }
-
-            private Person _p2;
-            public Person P2
-            {
-                get { return _p2; }
-                set
-                {
-                    if (_p2 != value)
-                    {
-                        _p2 = value;
-                        NotifyPropertyChanged("P2");
-                    }
-                }
-            }
-        }
-
         [TestMethod]
         public void Should_handle_multiple_properties_pointing_to_the_same_object()
         {
-            var d = new Dummy();
+            var d = new SameInstanceInPropertiesDummy();
             d.P1 = d.P2 = new Person();
             Tracker.Track(d);
 
@@ -355,6 +313,39 @@ namespace INotify.Test
             Assert.IsTrue(HasChange);
 
             person.Spouse.Name += "(changed)";
+            Assert.IsTrue(HasChange);
+        }
+
+        [TestMethod]
+        public void Should_handle_duplicate_collection_element()
+        {
+            var p1 = new Person();
+            var p2 = p1;
+            var ppl = new ObservableCollection<Person> { p1, p2 };
+            Tracker.Track(ppl);
+            ppl.Remove(p1);
+            Assert.IsTrue(HasChange);
+
+            p2.Name += "(changed)";
+            Assert.IsTrue(HasChange);
+
+            ppl.Remove(p2);
+            Assert.IsTrue(HasChange);
+
+            p2.Name += "(changed)";
+            Assert.IsFalse(HasChange);
+        }
+
+        #endregion
+
+        #region Dual
+
+        [TestMethod]
+        public void Should_handle_object_implements_both_interfaces()
+        {
+            var d = new DualDummy();
+            Tracker.Track(d);
+            d.Name += "(changed)";
             Assert.IsTrue(HasChange);
         }
 

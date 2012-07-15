@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionChangedTrackObject.cs" />
+    <Compile Include="DualTrackedObject.cs" />
     <Compile Include="PropertyChangedTrackedObject.cs" />
     <Compile Include="Tracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

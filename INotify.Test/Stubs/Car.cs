@@ -1,20 +1,7 @@
 ﻿namespace INotify.Test.Stubs
 {
-    using System;
-    using System.ComponentModel;
-
-    class Car : INotifyPropertyChanged
+    class Car : NotifyPropertyChangedObject
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-        }
-        #endregion
-
         private string _model = string.Empty;
         [TrackMember(IsExcluded = false)] internal string Model
         {

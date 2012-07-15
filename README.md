@@ -7,7 +7,7 @@ For a simple screen bound to a simple underlying data source, it is easy to just
 events and enable the Save button accordingly. For more complicated screens with multiple tabs and nested subviews bound to multiple data sources, 
 this task becomes tedious and error-prone.  (Try writing code to track changes to a grand grand grand child of an element which is just added to a collection reachable via a property of a root object! There you go.)
 
-This library is built specifically to address this problem. Create a ``Tracker`` instance, tell it to track one or more objects (which must implement either 
+This library is built specifically to address this problem. Create a ``Tracker`` instance, tell it to track one or more objects (which must implement one or both 
 ``INotifyCollectionChanged`` or ``INotifyPropertyChanged``), then wait for it to *notify* you when there is a change in the objects/collections, 
 their children, grand children and so on... 
 
