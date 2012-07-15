@@ -291,6 +291,24 @@ namespace INotify.Test
         }
 
         [TestMethod]
+        public void Should_not_fire_for_cleared_elements()
+        {
+            var p1 = new Person();
+            var p2 = new Person();
+            var ppl = new ObservableCollection<Person> { p1, p2 };
+            Tracker.Track(ppl);
+
+            ppl.Clear();
+            Assert.IsTrue(HasChange);
+
+            p1.Name += "(changed)";
+            Assert.IsFalse(HasChange);
+            
+            p2.Name += "(changed)";
+            Assert.IsFalse(HasChange);
+        }
+
+        [TestMethod]
         public void Should_fire_for_new_element()
         {
             var ppl = new ObservableCollection<Person>();
