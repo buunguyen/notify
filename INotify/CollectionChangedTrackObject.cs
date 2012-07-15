@@ -30,16 +30,12 @@
     /// </item>
     /// </list>
     /// </summary>
-    /// <remarks>
-    /// @TODO Memory leak might happen if the wrapped <see cref="INotifyCollectionChanged"/>
-    /// contains duplicated objects (having the same address in memory). 
-    /// </remarks>
-    internal class CollectionTrackedObject : TrackedObject
+    internal class CollectionChangedTrackObject : TrackedObject
     {
         private readonly Dictionary<object, TrackedObject> _registeredElements =
-            new Dictionary<object, TrackedObject>(new ObjectReferenceEqualityComparer<object>());
+            new Dictionary<object, TrackedObject>(ObjectReferenceEqualityComparer<object>.Default);
 
-        internal CollectionTrackedObject(object tracked)
+        internal CollectionChangedTrackObject(object tracked)
             : base(tracked)
         {
         }
@@ -103,6 +99,9 @@
 
         public class ObjectReferenceEqualityComparer<T> : EqualityComparer<T> where T : class
         {
+            public static new readonly IEqualityComparer<T> Default =
+                new ObjectReferenceEqualityComparer<T>();
+
             public override bool Equals(T x, T y)
             {
                 return ReferenceEquals(x, y);

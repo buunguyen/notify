@@ -1,6 +1,7 @@
 ﻿namespace INotify
 {
     using System;
+    using System.Collections;
     using System.Collections.Specialized;
     using System.ComponentModel;
 
@@ -21,16 +22,18 @@
         {
             if (!IsValidObjectType(obj))
                 throw new ArgumentException("null or invalid object type");
+
             var trackedObject = obj is INotifyCollectionChanged
-                                    ? (TrackedObject)new CollectionTrackedObject(obj)
-                                    : new NormalTrackedObject(obj);
+                                    ? (TrackedObject)new CollectionChangedTrackObject(obj)
+                                    : new PropertyChangedTrackedObject(obj);
             trackedObject.RegisterTrackedObject();
             return trackedObject;
         }
 
         protected static bool IsValidObjectType(object obj)
         {
-            return obj is INotifyPropertyChanged || obj is INotifyCollectionChanged;
+            return obj is INotifyPropertyChanged || 
+                   (obj is INotifyCollectionChanged && obj is IEnumerable);
         }
 
         protected abstract void RegisterTrackedObject();

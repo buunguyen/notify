@@ -29,12 +29,12 @@
     /// </item>
     /// </list>
     /// </summary>
-    internal class NormalTrackedObject : TrackedObject
+    internal class PropertyChangedTrackedObject : TrackedObject
     {
         private readonly Dictionary<object, TrackedObject> _registeredProperties =
             new Dictionary<object, TrackedObject>();
 
-        internal NormalTrackedObject(object tracked)
+        internal PropertyChangedTrackedObject(object tracked)
             : base(tracked)
         {
         }

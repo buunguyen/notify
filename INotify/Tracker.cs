@@ -1,14 +1,16 @@
 ﻿namespace INotify
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
 
     /// <summary>
     /// Creates an instance of this class to track changes to as many objects as needed.
     /// It automatically drills down and track changes to all objects reachable from the 
-    /// explicitly tracked objects. In an MVVM application, it should be sufficient to track 
+    /// explicitly tracked objects. In a MVVM application, it should be sufficient to track 
     /// just the root view model.
     /// </summary>
     /// <remarks>
@@ -17,7 +19,7 @@
     /// </remarks>
     public class Tracker : IDisposable
     {
-        private readonly List<TrackedObject> _objects = new List<TrackedObject>();
+        private readonly List<TrackedObject> _roots = new List<TrackedObject>();
         public event Changed Changed;
 
         /// <summary>
@@ -28,7 +30,7 @@
         /// These objects must not be <c>null</c> and must implements one of these 2 interfaces:
         /// <list type="bullet">
         ///     <item><description><see cref="INotifyPropertyChanged"/></description></item>
-        ///     <item><description><see cref="CollectionTrackedObject"/></description></item>
+        ///     <item><description><see cref="INotifyCollectionChanged"/> (and must also be an <see cref="IEnumerable"/>)</description></item>
         /// </list>
         /// </param>
         /// <returns>This tracker object.</returns>
@@ -42,19 +44,19 @@
                 o.Changed += _ => {
                     if (Changed != null) Changed(this);
                 };
-                _objects.Add(o);
+                _roots.Add(o);
             });
             return this;
         }
 
         /// <summary>
-        /// Cleanup the tracker and all tracked objects.
+        /// Cleans up the tracker and all tracked objects.
         /// </summary>
         public void Dispose()
         {
             Changed = null;
-            _objects.ForEach(o => o.Dispose());
-            _objects.Clear();
+            _roots.ForEach(o => o.Dispose());
+            _roots.Clear();
         }
     }
 }

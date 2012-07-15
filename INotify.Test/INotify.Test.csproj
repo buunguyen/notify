@@ -45,9 +45,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Limitation.cs" />
     <Compile Include="Stubs\Car.cs" />
     <Compile Include="Stubs\Person.cs" />
-    <Compile Include="TrackerTest.cs" />
+    <Compile Include="Features.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
