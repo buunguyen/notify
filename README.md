@@ -1,4 +1,4 @@
-## About INotify
+## About Notify
 When building WPF and WinForms applications, I often run into the need to know when there is a change in a data-binding data source (which implements
 `INotifyCollectionChanged` and/or `INotifyPropertyChanged`).
 
@@ -11,10 +11,10 @@ this task becomes tedious and error-prone.  (Try writing code to track changes t
 
 This library is built to simplify change tracking for `INotifyCollectionChanged` and `INotifyPropertyChanged` data sources.
 
-## Using INotify
-Add reference to `INotify.dll`, e.g. via NuGet
+## Using Notify
+Add reference to `Notify.dll`, e.g. via NuGet
 ```
-Install-Package INotify 
+Install-Package Notify 
 ```
 Next, create a `Tracker` instance to track your objects and handle its `Changed` event
 ```csharp

@@ -1,4 +1,4 @@
-﻿namespace INotify.Test.Stubs
+﻿namespace Notify.Test.Stubs
 {
     using System;
     using System.Collections.ObjectModel;

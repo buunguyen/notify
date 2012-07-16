@@ -9,8 +9,8 @@
     <ProjectGuid>{D71E74E8-C874-4CB5-A4ED-BCA4318819E6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>INotify.Test</RootNamespace>
-    <AssemblyName>INotify.Test</AssemblyName>
+    <RootNamespace>Notify.Test</RootNamespace>
+    <AssemblyName>Notify.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,9 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\INotify\INotify.csproj">
+    <ProjectReference Include="..\Notify\Notify.csproj">
       <Project>{71C66376-06E4-4AA4-9B85-AA5A7377CCD5}</Project>
-      <Name>INotify</Name>
+      <Name>Notify</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

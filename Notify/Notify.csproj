@@ -8,8 +8,8 @@
     <ProjectGuid>{71C66376-06E4-4AA4-9B85-AA5A7377CCD5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>INotify</RootNamespace>
-    <AssemblyName>INotify</AssemblyName>
+    <RootNamespace>Notify</RootNamespace>
+    <AssemblyName>Notify</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

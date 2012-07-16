@@ -1,4 +1,4 @@
-﻿namespace INotify
+﻿namespace Notify
 {
     using System;
     using System.Collections;

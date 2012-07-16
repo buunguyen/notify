@@ -1,4 +1,4 @@
-﻿namespace INotify.Test.Stubs
+﻿namespace Notify.Test.Stubs
 {
     class Car : NotifyPropertyChangedObject
     {

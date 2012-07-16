@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace INotify.Test
+namespace Notify.Test
 {
     using System;
     using System.Collections.ObjectModel;

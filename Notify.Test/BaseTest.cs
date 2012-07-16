@@ -1,6 +1,6 @@
 ﻿// ReSharper restore InconsistentNaming
 
-namespace INotify.Test
+namespace Notify.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

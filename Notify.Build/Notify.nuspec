@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>INotify</id>
-    <version>1.0.1</version>
+    <id>Notify</id>
+    <version>1.0.0</version>
     <authors>Buu Nguyen</authors>
     <owners>Buu Nguyen</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
-    <projectUrl>http://buunguyen.github.com/INotify/</projectUrl>
+    <projectUrl>http://buunguyen.github.com/notify/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Object change tracking library for .NET applications.</description>
     <copyright>Copyright 2012</copyright>

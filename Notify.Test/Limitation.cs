@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace INotify.Test
+namespace Notify.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Stubs;

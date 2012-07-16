@@ -1,4 +1,4 @@
-﻿namespace INotify
+﻿namespace Notify
 {
     using System.Collections.Generic;
     using System.ComponentModel;
