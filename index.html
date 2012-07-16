@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Notify by buunguyen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Notify</h1>
+        <p class="header">Change tracking library for .NET</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/buunguyen/notify/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/buunguyen/notify/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/buunguyen/notify">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/buunguyen">buunguyen</a></p>
+
+
+      </header>
+      <section>
+        <h2>About Notify</h2>
+
+<p>When building WPF and WinForms applications, I often run into the need to know when there is a change in a data-binding data source (which implements
+<code>INotifyCollectionChanged</code> and/or <code>INotifyPropertyChanged</code>).</p>
+
+<p>For example, imagine an application with a screen for users to edit some settings.
+By default, the Save button is disabled because no change was made yet. Whenever a user makes a change to the screen, data binding triggers a change to the underlying data source and the Save button should be enabled.</p>
+
+<p>For a simple screen bound to a simple underlying data source, it is easy to just listen to the <code>PropertyChanged</code> or <code>CollectionChanged</code>
+events and enable the Save button accordingly. For more complicated screens with multiple tabs and nested subviews bound to multiple data sources, 
+this task becomes tedious and error-prone.  (Try writing code to track changes to a grand grand grand child of an element which is just added to a collection reachable via a property of a root object! There you go.)</p>
+
+<p>This library is built to simplify change tracking for <code>INotifyCollectionChanged</code> and <code>INotifyPropertyChanged</code> data sources.</p>
+
+<h2>Using Notify</h2>
+
+<p>Add reference to <code>Notify.dll</code>, e.g. via NuGet</p>
+
+<pre><code>Install-Package Notify 
+</code></pre>
+
+<p>Next, create a <code>Tracker</code> instance to track your objects and handle its <code>Changed</code> event</p>
+
+<div class="highlight">
+<pre><span class="kt">var</span> <span class="n">tracker</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tracker</span><span class="p">().</span><span class="n">Track</span><span class="p">(</span><span class="n">root1</span><span class="p">,</span> <span class="n">root2</span><span class="p">);</span>
+<span class="n">tracker</span><span class="p">.</span><span class="n">Changed</span> <span class="p">+=</span> <span class="n">_</span> <span class="p">=&gt;</span> <span class="n">EnableSave</span><span class="p">();</span>
+
+<span class="c1">// ...sometimes later</span>
+<span class="n">tracker</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span> <span class="c1">// stop bothering me</span>
+</pre>
+</div>
+
+
+<p>That's it! The unit test includes detailed usage of the library. Go take a look and have fun being notified of changes.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+		
+  </body>
+</html>
