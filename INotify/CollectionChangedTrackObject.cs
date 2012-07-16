@@ -99,8 +99,7 @@
 
         private void RemoveAllElements()
         {
-            foreach (var key in _registeredElements.Keys.ToArray())
-                RemoveElement(key);
+            _registeredElements.Keys.ToList().ForEach(RemoveElement);
         }
 
         private class TrackCount

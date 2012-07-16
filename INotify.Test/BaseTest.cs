@@ -4,7 +4,7 @@ namespace INotify.Test
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    public class BaseTest
+    [TestClass] public class BaseTest
     {
         protected Tracker Tracker;
 

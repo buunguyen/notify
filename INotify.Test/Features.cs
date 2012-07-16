@@ -341,6 +341,7 @@ namespace INotify.Test
             var p2 = p1;
             var ppl = new ObservableCollection<Person> { p1, p2 };
             Tracker.Track(ppl);
+
             ppl.Remove(p1);
             Assert.IsTrue(HasChange);
 
@@ -363,7 +364,11 @@ namespace INotify.Test
         {
             var d = new DualDummy();
             Tracker.Track(d);
+
             d.Name += "(changed)";
+            Assert.IsTrue(HasChange);
+
+            d.Add("something");
             Assert.IsTrue(HasChange);
         }
 
