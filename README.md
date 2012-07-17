@@ -25,3 +25,10 @@ tracker.Changed += _ => EnableSave();
 tracker.Dispose(); // stop bothering me
 ```
 That's it! The unit test includes detailed usage of the library. Go take a look and have fun being notified of changes.
+
+
+## Contact
+
+* Email: [buunguyen@gmail.com](mailto:buunguyen@gmail.com)
+* Blog: [www.buunguyen.net](http://www.buunguyen.net/blog)
+* Twitter: [@buunguyen](https://twitter.com/buunguyen/)
