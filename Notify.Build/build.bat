@@ -26,6 +26,7 @@ echo 3. Create NuGet package
 xcopy Notify.nuspec ..\Notify\bin\Release\
 mkdir ..\Notify\bin\Release\lib\net40\ 
 move /Y ..\Notify\bin\Release\Notify.dll ..\Notify\bin\Release\lib\net40\
+move /Y ..\Notify\bin\Release\Notify.xml ..\Notify\bin\Release\lib\net40\
 nuget pack ..\Notify\bin\Release\Notify.nuspec
 
 :VERSION
