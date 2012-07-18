@@ -10,6 +10,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Object change tracking library for .NET applications.</description>
     <copyright>Copyright 2012</copyright>
-    <tags>wpf winforms changes mvvm track-changes notify-changes change-tracking</tags>
+    <tags>WPF WP7 WinForms MVVM INotifyPropertyChanged INotifyCollectionChanged DataBinding</tags>
   </metadata>
 </package>

@@ -20,6 +20,10 @@
     public class Tracker : IDisposable
     {
         private readonly List<TrackedObject> _roots = new List<TrackedObject>();
+        
+        /// <summary>
+        /// Handle this event to receive change notification. 
+        /// </summary>
         public event Changed Changed;
 
         /// <summary>

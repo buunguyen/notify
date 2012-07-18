@@ -9,10 +9,10 @@ goto:ENDBUILD
 :REBUILD
 
 echo 1. Build
-%MSBUILD% /t:Rebuild /p:Configuration=Release "..\Notify.sln"
+%MSBUILD% /t:Rebuild /p:Configuration=Release "..\src\Notify.sln"
 
 echo 2. Run tests
-%MSTEST% /testcontainer:..\Notify.Test\bin\Release\Notify.Test.dll /test:Notify.Test.Features
+%MSTEST% /testcontainer:..\src\Notify.Test\bin\Release\Notify.Test.dll /test:Notify.Test.Features
 :ENDBUILD
 
 rem ************** NuGet ************** 
@@ -23,11 +23,11 @@ goto:EOF
 :NUGET
 NOTEPAD Notify.nuspec
 echo 3. Create NuGet package
-xcopy Notify.nuspec ..\Notify\bin\Release\
-mkdir ..\Notify\bin\Release\lib\net40\ 
-move /Y ..\Notify\bin\Release\Notify.dll ..\Notify\bin\Release\lib\net40\
-move /Y ..\Notify\bin\Release\Notify.xml ..\Notify\bin\Release\lib\net40\
-nuget pack ..\Notify\bin\Release\Notify.nuspec
+xcopy Notify.nuspec ..\src\Notify\bin\Release\
+mkdir ..\src\Notify\bin\Release\lib\net40\ 
+move /Y ..\src\Notify\bin\Release\Notify.dll ..\src\Notify\bin\Release\lib\net40\
+move /Y ..\src\Notify\bin\Release\Notify.xml ..\src\Notify\bin\Release\lib\net40\
+nuget pack ..\src\Notify\bin\Release\Notify.nuspec
 
 :VERSION
 set /P VERSION=Enter version: 
