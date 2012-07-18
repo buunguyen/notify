@@ -13,7 +13,7 @@ This library is built to simplify change tracking for `INotifyCollectionChanged`
 
 ## Using Notify
 Add reference to `Notify.dll`, e.g. via NuGet
-```
+```csharp
 Install-Package Notify 
 ```
 Next, create a `Tracker` instance to track your objects and handle its `Changed` event
