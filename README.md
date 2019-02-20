@@ -1,3 +1,5 @@
+[![Code Shelter](https://www.codeshelter.co/static/badges/badge-flat.svg)](https://www.codeshelter.co/)
+
 ## About Notify
 When building WPF and WinForms applications, I often run into the need to know when there is a change in a data-binding data source (which implements
 `INotifyCollectionChanged` and/or `INotifyPropertyChanged`).
